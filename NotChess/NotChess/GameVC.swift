@@ -82,8 +82,63 @@ class GameVC: UIViewController {
     @IBOutlet var p77 : UIImageView!
     
     var positions : [[UIImageView]] = []
+    var occupancy : [[Bool]] = []
     var pieces : [Piece] = []
-    var playerPosition : (Int, Int)?
+    var playerPosition : (Int, Int) = (0,0) //y,x
+    var gameOver : Bool = false
+    var timer : Timer?
+    var seconds : Int = 60
+    
+    @IBAction func swipeRight(sender: UISwipeGestureRecognizer) {
+        if !gameOver{
+            if playerPosition.1 < 7 {
+                updatePlayerPiece(to: (playerPosition.0, playerPosition.1 + 1))
+            }
+        }
+    }
+    @IBAction func swipeLeft(sender: UISwipeGestureRecognizer) {
+        if !gameOver{
+            if playerPosition.1 > 0 {
+                updatePlayerPiece(to: (playerPosition.0, playerPosition.1 - 1))
+            }
+        }
+    }
+    @IBAction func swipeUp(sender: UISwipeGestureRecognizer) {
+        if !gameOver{
+            if playerPosition.0 > 0 {
+                updatePlayerPiece(to: (playerPosition.0 - 1, playerPosition.1))
+            }
+        }
+    }
+    @IBAction func swipeDown(sender: UISwipeGestureRecognizer) {
+        if !gameOver{
+            if playerPosition.0 < 7 {
+                updatePlayerPiece(to: (playerPosition.0 + 1, playerPosition.1))
+            }
+        }
+    }
+    
+    func updatePlayerPiece(to: (Int, Int)){ //to: y x
+        positions[playerPosition.0][playerPosition.1].image = UIImage(named: "transparentSquare")
+        if occupancy[to.0][to.1] == false {
+            occupancy[playerPosition.0][playerPosition.1] = false
+            positions[to.0][to.1].image = UIImage(named: "playerRedDot")
+            playerPosition = to
+            print(playerPosition)
+        }
+        else {
+            gameOver = true
+        }
+    }
+    @objc func tick() -> Void{
+        print(1)
+    }
+    func updateBoard(){
+        
+    }
+    func speedUp(){
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         positions = [
@@ -96,6 +151,23 @@ class GameVC: UIViewController {
             [p60, p61, p62, p63, p64, p65, p66, p67],
             [p70, p71, p72, p73, p74, p75, p76, p77]
         ]
+        occupancy = [
+            [false, false, false, false, false, false, false, false],
+            [false, false, false, false, false, false, false, false],
+            [false, false, false, false, false, false, false, false],
+            [false, false, false, false, false, false, false, false],
+            [false, false, false, false, false, false, false, false],
+            [false, false, false, false, false, false, false, false],
+            [false, false, false, false, false, false, false, false],
+            [false, false, false, false, false, false, false, false]
+        ]
+        playerPosition = (4,4)
+        positions[playerPosition.0][playerPosition.1].image = UIImage(named: "playerRedDot")
+        occupancy[playerPosition.0][playerPosition.1] = true
+        if(timer == nil)
+        {
+            timer = Timer.scheduledTimer(timeInterval: 0.5, target:self, selector:#selector(tick), userInfo:nil, repeats:true)
+        }
     }
 
 }
