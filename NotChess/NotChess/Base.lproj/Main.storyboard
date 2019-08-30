@@ -1274,6 +1274,9 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <connections>
                             <outletCollection property="gestureRecognizers" destination="tA8-2M-lwZ" appends="YES" id="tao-f7-E4H"/>
+                            <outletCollection property="gestureRecognizers" destination="Abe-Ml-EBc" appends="YES" id="OmX-iN-ns5"/>
+                            <outletCollection property="gestureRecognizers" destination="zqY-od-NJl" appends="YES" id="rNf-yn-Guz"/>
+                            <outletCollection property="gestureRecognizers" destination="LlU-7W-Gov" appends="YES" id="Rmg-fU-Ym7"/>
                         </connections>
                     </view>
                     <connections>
@@ -1344,7 +1347,26 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
-                <swipeGestureRecognizer direction="right" id="tA8-2M-lwZ"/>
+                <swipeGestureRecognizer direction="right" id="tA8-2M-lwZ">
+                    <connections>
+                        <action selector="swipeRightWithSender:" destination="BYZ-38-t0r" id="xs6-Lb-Hzw"/>
+                    </connections>
+                </swipeGestureRecognizer>
+                <swipeGestureRecognizer direction="left" id="Abe-Ml-EBc">
+                    <connections>
+                        <action selector="swipeLeftWithSender:" destination="BYZ-38-t0r" id="01r-EZ-Sii"/>
+                    </connections>
+                </swipeGestureRecognizer>
+                <swipeGestureRecognizer direction="up" id="zqY-od-NJl">
+                    <connections>
+                        <action selector="swipeUpWithSender:" destination="BYZ-38-t0r" id="GOu-Gw-gxD"/>
+                    </connections>
+                </swipeGestureRecognizer>
+                <swipeGestureRecognizer direction="down" id="LlU-7W-Gov">
+                    <connections>
+                        <action selector="swipeDownWithSender:" destination="BYZ-38-t0r" id="JBi-Ya-zTc"/>
+                    </connections>
+                </swipeGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="-10" y="177"/>
         </scene>
