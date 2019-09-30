@@ -9,63 +9,18 @@
 import UIKit
 
 class Piece{
-    var pieceType : String?
-    var direction : String?
-    var pX : Int?
-    var pY : Int?
+    var pieceType : String
+    var direction : String
+    var pX : Int
+    var pY : Int
+    var color : Character
     var delay : Int = 0
-    init(type: String, direction: String, positionX : Int, positionY: Int){
+    init(type: String, direction: String, positionX : Int, positionY: Int, color : Character){
         pieceType = type
         self.direction = direction
         pX = positionX
         pY = positionY
+        self.color = color
     }
-    func checkMove(){
-        switch pieceType{
-        case "pawn":
-            if delay <= 4 {
-                movePawn()
-            }
-        case "rook":
-            if delay <= 3 {
-                moveRook()
-            }
-        case "knight":
-            if delay <= 2 {
-                moveKnight()
-            }
-        case "bishop":
-            if delay <= 2 {
-                moveBishop()
-            }
-        case "king":
-            if delay <= 4 {
-                moveKing()
-            }
-        case "queen":
-            if delay <= 1 {
-                moveQueen()
-            }
-        default:
-            print("invalid piece")
-        }
-    }
-    func movePawn(){
-        
-    }
-    func moveRook(){
-        
-    }
-    func moveKnight(){
-        
-    }
-    func moveBishop(){
-        
-    }
-    func moveKing(){
-        
-    }
-    func moveQueen(){
-        
-    }
+    
 }
